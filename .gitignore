@@ -1,0 +1,15 @@
+# Node.js projects
+node_modules/
+.env
+dist/
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# VS Code settings
+.vscode/
+
+# Build files
+/build

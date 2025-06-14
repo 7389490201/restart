@@ -1,10 +1,8 @@
 const express = require('express');
 const router = express.Router();
-
 const multer = require('multer');
-
 const path = require('path');
-const { signup, signin } = require('../controller/user.controller');
+const { adminsignup, adminsignin } = require('../controller/admin.conroller');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -18,10 +16,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post('/signup', upload.single('profilePicture'), signup);
+router.post('/signup', upload.single('profilePicture'), adminsignup);
+router.post('/signin', adminsignin);
 
 
-router.post("/signin", signin);
 
 
 module.exports = router;

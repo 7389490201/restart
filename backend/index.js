@@ -11,6 +11,7 @@ const userRoutes = require("./src/routes/user.routes");
 app.use(cors());
 app.use(express.json());
 app.use('/api/user', userRoutes);
+app.use("/api/admin", require("./src/routes/admin.routes"));
 app.use('/uploads', express.static(path.join(__dirname, 'src/uploads')));
 
 mongoose.connect(process.env.MONGODB_URI).then(() => {

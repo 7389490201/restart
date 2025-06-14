@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const userSchema = new mongoose.Schema({
+const adminSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required: true,
@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        default: 'user',
+        default: 'admin'
     },
     profilePicture: {
         type: String,
@@ -46,14 +46,14 @@ const userSchema = new mongoose.Schema({
         default: Date.now
     }
 });
-userSchema.virtual('fullName').get(function () {
+adminSchema.virtual('fullName').get(function () {
     return `${this.firstName} ${this.lastName}`;
 });
-userSchema.virtual('password')
+adminSchema.virtual('password')
     .set(function (password) {
         this.hash_password = bcrypt.hashSync(password, 10);
     })
-userSchema.methods.comparePassword = function (password) {
+adminSchema.methods.comparePassword = function (password) {
     return bcrypt.compareSync(password, this.hash_password);
 };
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Admin', adminSchema);
