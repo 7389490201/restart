@@ -15,6 +15,8 @@ app.use("/api/admin", require("./src/routes/admin.routes"));
 app.use('/uploads', express.static(path.join(__dirname, 'src/uploads')));
 app.use("/api/category", require("./src/routes/category.route"));
 app.use("/api/product", require("./src/routes/product.route"));
+app.use("/api/cart", require("./src/routes/cart.route"));
+app.use("/api/order", require("./src/routes/order.routes"));
 
 
 mongoose.connect(process.env.MONGODB_URI).then(() => {
