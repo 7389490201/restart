@@ -23,6 +23,7 @@ exports.adminsignup = async (req, res) => {
             hash_password: password,
             phone,
             profilePicture: `http://localhost:2000/uploads/${path.basename(req.file.path)}`,
+            role: "admin"
         });
 
         await admin.save();
@@ -47,11 +48,12 @@ exports.adminsignin = async (req, res) => {
         res.status(200).send({
             message: 'Signin successful',
             token: token,
-            user: {
+            admin: {
                 id: admin._id,
                 fullName: admin.fullName,
                 email: admin.email,
-                profilePicture: admin.profilePicture
+                profilePicture: admin.profilePicture,
+                role: admin.role
             }
         });
     } catch (error) {

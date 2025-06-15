@@ -13,6 +13,9 @@ app.use(express.json());
 app.use('/api/user', userRoutes);
 app.use("/api/admin", require("./src/routes/admin.routes"));
 app.use('/uploads', express.static(path.join(__dirname, 'src/uploads')));
+app.use("/api/category", require("./src/routes/category.route"));
+app.use("/api/product", require("./src/routes/product.route"));
+
 
 mongoose.connect(process.env.MONGODB_URI).then(() => {
     console.log("MongoDB connected successfully");
